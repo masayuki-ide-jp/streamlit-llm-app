@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
 import streamlit as st
 import os
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+# os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 st.title("キャリアに関する悩みを相談するアプリ")
 
@@ -37,7 +37,7 @@ if st.button("実行"):
     if input_message:
         st.write(f"相談内容: **{input_message}**")
 
-        llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.5)
+        llm = ChatOpenAI(openai_api_key=st.secrets["OPENAI_API_KEY"], model_name="gpt-4o-mini", temperature=0.5)
 
         messages = [
             SystemMessage(content=system_prompt),
